@@ -66,4 +66,4 @@ function generateScaffolding(building) {
     return scaffoldings;
 }
 
-exports.generate_scaffolding = generate_scaffolding
+exports.generateScaffolding = generateScaffolding;
