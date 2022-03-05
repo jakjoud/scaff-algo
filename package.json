@@ -1,0 +1,20 @@
+{
+  "name": "scaffy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "algorithms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakjoud/scaff-algo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakjoud/scaff-algo/issues"
+  },
+  "homepage": "https://github.com/jakjoud/scaff-algo#readme"
+}

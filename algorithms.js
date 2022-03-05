@@ -1,34 +1,34 @@
 const configuration = {
-    default_size: 0.25
+    defaultSize: 0.25
 }
 
-function process_level(foot_print, height){
+function processLevel(footprint, height){
     const scaffoldings=[];
-    for(let i = 0 ; i < foot_print.length(); i++){
+    for(let i = 0 ; i < footprint.length; i++){
         let start;
         let end;
-        if(i < foot_print.length()-1){
-            start = foot_print[i];
-            end = foot_print[i+1];
+        if(i < footprint.length-1){
+            start = footprint[i];
+            end = footprint[i+1];
         } else {
-            start = foot_print[foot_print.length()-1];
-            end = foot_print[0];
+            start = footprint[footprint.length-1];
+            end = footprint[0];
         }
         const scaffolding = {
             x:null,
             y:null,
             width:null,
             length:null,
-            height:height/2
+            height:height-0.5
         }
         if(start.x == end.x) {
-            scaffolding.x = start.x-configuration.default_size;
-            scaffolding.width = configuration.default_size*2;
+            scaffolding.x = start.x-configuration.defaultSize;
+            scaffolding.width = configuration.defaultSize*2;
             scaffolding.y = Math.min(start.y, end.y);
             scaffolding.length = Math.abs(start.y - end.y);
         } else if(start.y == end.y){
-            scaffolding.y = start.y-configuration.default_size;
-            scaffolding.length = configuration.default_size*2;
+            scaffolding.y = start.y-configuration.defaultSize;
+            scaffolding.length = configuration.defaultSize*2;
             scaffolding.x = Math.min(start.x, end.x);
             scaffolding.width = Math.abs(start.x - end.x);
         } else {
@@ -41,8 +41,8 @@ function process_level(foot_print, height){
             const len = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
             const udx = dx / len;
             const udy = dy / len;
-            const xs=x1 -udy * configuration.default_size;
-            const ys=y1 + udx * configuration.default_size;
+            const xs=x1 -udy * configuration.defaultSize;
+            const ys=y1 + udx * configuration.defaultSize;
             const xe=xs + dx;
             const ye=ys + dy;
             scaffolding.x = Math.min(xs, xe);
@@ -57,11 +57,13 @@ function process_level(foot_print, height){
     return scaffoldings;
 }
 
-function generate_scaffolding(building) {
+function generateScaffolding(building) {
     const scaffoldings = [];
     for(const level of building.levels){
-        scaffoldings.push(...process_level(level.footprint, level.height))
+        scaffoldings.push(...processLevel(level.footprint, level.height))
     }
 
     return scaffoldings;
 }
+
+exports.generate_scaffolding = generate_scaffolding
